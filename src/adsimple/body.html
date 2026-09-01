@@ -381,7 +381,34 @@
       <p class="lead">Book a free 30-minute strategy session. We'll tell you exactly where your marketing is leaking money — whether or not you work with us after.</p>
       <form class="final-form" onsubmit="event.preventDefault(); this.querySelector('button').textContent='Request sent ✓';">
         <input type="text" placeholder="Company name" required>
-        <input type="email" placeholder="Work email" required>
+        <div class="phone-group">
+          <select id="countryCode" aria-label="Country code" required>
+            <option value="+31" data-country="NL">🇳🇱 +31</option>
+            <option value="+32" data-country="BE">🇧🇪 +32</option>
+            <option value="+49" data-country="DE">🇩🇪 +49</option>
+            <option value="+33" data-country="FR">🇫🇷 +33</option>
+            <option value="+44" data-country="GB">🇬🇧 +44</option>
+            <option value="+34" data-country="ES">🇪🇸 +34</option>
+            <option value="+39" data-country="IT">🇮🇹 +39</option>
+            <option value="+353" data-country="IE">🇮🇪 +353</option>
+            <option value="+43" data-country="AT">🇦🇹 +43</option>
+            <option value="+41" data-country="CH">🇨🇭 +41</option>
+            <option value="+48" data-country="PL">🇵🇱 +48</option>
+            <option value="+420" data-country="CZ">🇨🇿 +420</option>
+            <option value="+380" data-country="UA">🇺🇦 +380</option>
+            <option value="+371" data-country="LV">🇱🇻 +371</option>
+            <option value="+372" data-country="EE">🇪🇪 +372</option>
+            <option value="+370" data-country="LT">🇱🇹 +370</option>
+            <option value="+45" data-country="DK">🇩🇰 +45</option>
+            <option value="+46" data-country="SE">🇸🇪 +46</option>
+            <option value="+47" data-country="NO">🇳🇴 +47</option>
+            <option value="+358" data-country="FI">🇫🇮 +358</option>
+            <option value="+351" data-country="PT">🇵🇹 +351</option>
+            <option value="+1" data-country="US">🇺🇸 +1</option>
+            <option value="+971" data-country="AE">🇦🇪 +971</option>
+          </select>
+          <input type="tel" placeholder="6 1234 5678" inputmode="tel" autocomplete="tel-national" required>
+        </div>
         <button type="submit" class="btn btn-primary">Book my session →</button>
       </form>
       <div class="final-note">No obligation · Replies within 1 business day</div>
