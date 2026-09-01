@@ -326,3 +326,14 @@
   @media (prefers-reduced-motion: reduce){
     *{ animation:none !important; transition:none !important; }
   }
+
+  /* ---------- legal pages (privacy policy, terms) ---------- */
+  .legal{ padding:160px 0 100px; }
+  .legal h1{ font-size:clamp(40px,6vw,72px); margin-bottom:14px; }
+  .legal-updated{ font-family:'IBM Plex Mono', monospace; font-size:12.5px; color:var(--steel); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:48px; }
+  .legal h2{ font-family:'Space Grotesk', sans-serif; text-transform:none; font-weight:700; font-size:22px; letter-spacing:0; line-height:1.3; margin:44px 0 14px; }
+  .legal p{ color:var(--bone-dim); max-width:720px; margin-bottom:16px; }
+  .legal ul{ color:var(--bone-dim); max-width:720px; margin:0 0 16px 20px; }
+  .legal li{ margin-bottom:8px; }
+  .legal a{ color:var(--volt); text-decoration:underline; text-underline-offset:3px; }
+  .legal strong{ color:var(--bone); }
