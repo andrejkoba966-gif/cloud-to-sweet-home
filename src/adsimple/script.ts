@@ -27,6 +27,20 @@ export function initAdsimple(): () => void {
 
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  // ---------- phone country code auto-detect ----------
+  const codeSelect = document.getElementById('countryCode');
+  if (codeSelect) {
+    fetch('https://ipapi.co/json/')
+      .then(r => r.json())
+      .then(data => {
+        const cc = data && data.country_code;
+        if (!cc) return;
+        const opt = codeSelect.querySelector(`option[data-country="${cc}"]`);
+        if (opt) codeSelect.value = opt.value;
+      })
+      .catch(() => {});
+  }
+
   // ---------- scroll progress bar ----------
   const progressBar = document.createElement('div');
   progressBar.className = 'scroll-progress';
