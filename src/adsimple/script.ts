@@ -171,6 +171,52 @@ export function initAdsimple(): () => void {
     }
   }
 
+  // ---------- lead form submit ----------
+  const leadForm = document.getElementById('leadForm');
+  const leadSubmit = document.getElementById('leadSubmit');
+  const formStatus = document.getElementById('formStatus');
+  if (leadForm && leadSubmit && formStatus) {
+    leadForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const companyInput = document.getElementById('companyName');
+      const countrySelect = document.getElementById('countryCode');
+      const phoneInput = document.getElementById('phoneNumber');
+
+      const company = companyInput.value.trim();
+      const countryCode = countrySelect.value;
+      const phone = phoneInput.value.trim();
+
+      formStatus.classList.remove('success', 'error');
+
+      if (!company || !phone) {
+        formStatus.textContent = 'Please fill in your company name and phone number.';
+        formStatus.classList.add('error');
+        return;
+      }
+
+      const originalLabel = leadSubmit.textContent;
+      leadSubmit.disabled = true;
+      leadSubmit.textContent = 'Sending…';
+      formStatus.textContent = '';
+
+      sendLeadToTelegram({ data: { company, countryCode, phone } })
+        .then(() => {
+          formStatus.textContent = "Thanks! We've got your details and will contact you within 1 business day.";
+          formStatus.classList.add('success');
+          leadForm.reset();
+        })
+        .catch(() => {
+          formStatus.textContent = "Something went wrong. Please try again or email us directly.";
+          formStatus.classList.add('error');
+        })
+        .finally(() => {
+          leadSubmit.disabled = false;
+          leadSubmit.textContent = originalLabel;
+        });
+    });
+  }
+
   // ---------- metric panel tilt on mouse move ----------
   const metricPanel = document.getElementById('metricPanel');
   if(metricPanel && !reduceMotion){
