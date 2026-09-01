@@ -1,4 +1,6 @@
 // @ts-nocheck
+import { sendLeadToTelegram } from "../lib/telegram.functions";
+
 export function initAdsimple(): () => void {
   const cleanups: Array<() => void> = [];
 

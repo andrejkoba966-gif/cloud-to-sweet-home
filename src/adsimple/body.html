@@ -379,8 +379,8 @@
       <div class="eyebrow" style="justify-content:center;">Start with a conversation, not a contract</div>
       <h2>LET'S FIND<br>THE <span class="hi">€.</span></h2>
       <p class="lead">Book a free 30-minute strategy session. We'll tell you exactly where your marketing is leaking money — whether or not you work with us after.</p>
-      <form class="final-form" onsubmit="event.preventDefault(); this.querySelector('button').textContent='Request sent ✓';">
-        <input type="text" placeholder="Company name" required>
+      <form class="final-form" id="leadForm" novalidate>
+        <input type="text" id="companyName" placeholder="Company name" required>
         <div class="phone-group">
           <select id="countryCode" aria-label="Country code" required>
             <option value="+31" data-country="NL">NL +31</option>
@@ -407,9 +407,10 @@
             <option value="+1" data-country="US">US +1</option>
             <option value="+971" data-country="AE">AE +971</option>
           </select>
-          <input type="tel" placeholder="6 1234 5678" inputmode="tel" autocomplete="tel-national" required>
+          <input type="tel" id="phoneNumber" placeholder="6 1234 5678" inputmode="tel" autocomplete="tel-national" required>
         </div>
-        <button type="submit" class="btn btn-primary">Book my session →</button>
+        <button type="submit" class="btn btn-primary" id="leadSubmit">Book my session →</button>
+        <div class="form-status" id="formStatus" aria-live="polite"></div>
       </form>
       <div class="final-note">No obligation · Replies within 1 business day</div>
     </div>
