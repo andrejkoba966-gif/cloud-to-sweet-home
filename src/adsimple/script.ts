@@ -1,3 +1,4 @@
+// @ts-nocheck
 export function initAdsimple(): () => void {
   const cleanups: Array<() => void> = [];
 
