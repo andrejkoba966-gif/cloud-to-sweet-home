@@ -271,7 +271,7 @@
   .phone-group{ display:flex; flex:1.4; min-width:280px; gap:0; }
   .phone-group select{
     background:var(--charcoal); border:1px solid var(--line); border-right:none; color:var(--bone);
-    font-family:'Space Grotesk'; padding:16px 12px; font-size:14px; cursor:pointer; max-width:110px;
+    font-family:'Space Grotesk'; padding:16px 12px; font-size:14px; cursor:pointer; max-width:130px;
   }
   .phone-group select:focus, .phone-group input:focus{ outline:none; border-color:var(--volt); }
   .phone-group input{ border-left:none; flex:1; min-width:0; }
