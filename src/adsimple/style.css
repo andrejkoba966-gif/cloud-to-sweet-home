@@ -281,6 +281,16 @@
   .form-status.error{ color:#ff6b6b; }
   .final-form button[disabled]{ opacity:0.6; cursor:not-allowed; }
 
+  /* ---------- THANK YOU MODAL ---------- */
+  .thank-you-modal{ position:fixed; inset:0; z-index:200; display:flex; align-items:center; justify-content:center; padding:20px; pointer-events:none; opacity:0; transition:opacity .3s ease; }
+  .thank-you-modal:not([hidden]){ pointer-events:auto; opacity:1; }
+  .thank-you-backdrop{ position:absolute; inset:0; background:rgba(11,12,10,.82); backdrop-filter:blur(4px); }
+  .thank-you-panel{ position:relative; z-index:1; background:var(--charcoal-2); border:1px solid var(--line); padding:44px 40px; max-width:420px; width:100%; text-align:center; }
+  .thank-you-icon{ width:56px; height:56px; border-radius:50%; background:var(--volt); color:var(--ink); display:flex; align-items:center; justify-content:center; font-size:26px; font-weight:700; margin:0 auto 22px; }
+  .thank-you-panel h3{ font-size:clamp(32px,6vw,46px); margin-bottom:14px; }
+  .thank-you-panel p{ color:var(--bone-dim); font-size:15px; line-height:1.5; margin-bottom:28px; }
+  .thank-you-panel .btn{ width:100%; justify-content:center; }
+
   /* ---------- FOOTER ---------- */
   footer{ border-top:1px solid var(--line); padding:60px 0 30px; }
   .foot-grid{ display:grid; grid-template-columns:1.3fr 0.9fr 0.9fr 0.9fr 0.7fr; gap:32px; margin-bottom:60px; }

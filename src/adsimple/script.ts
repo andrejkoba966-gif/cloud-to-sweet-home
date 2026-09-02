@@ -172,20 +172,51 @@ export function initAdsimple(): () => void {
   }
 
   // ---------- lead form submit ----------
-  const leadForm = document.getElementById('leadForm');
-  const leadSubmit = document.getElementById('leadSubmit');
+  const leadForm = document.getElementById('leadForm') as HTMLFormElement | null;
+  const leadSubmit = document.getElementById('leadSubmit') as HTMLButtonElement | null;
   const formStatus = document.getElementById('formStatus');
+  const thankYouModal = document.getElementById('thankYouModal') as HTMLElement | null;
+  const thankYouClose = document.getElementById('thankYouClose') as HTMLButtonElement | null;
+
+  function openThankYouModal() {
+    if (!thankYouModal) return;
+    thankYouModal.removeAttribute('hidden');
+    document.body.style.overflow = 'hidden';
+    thankYouClose?.focus();
+  }
+
+  function closeThankYouModal() {
+    if (!thankYouModal) return;
+    thankYouModal.setAttribute('hidden', '');
+    document.body.style.overflow = '';
+    leadSubmit?.focus();
+  }
+
+  if (thankYouModal) {
+    thankYouModal.addEventListener('click', (e) => {
+      if ((e.target as HTMLElement).classList.contains('thank-you-backdrop')) {
+        closeThankYouModal();
+      }
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !thankYouModal.hasAttribute('hidden')) {
+        closeThankYouModal();
+      }
+    });
+  }
+  thankYouClose?.addEventListener('click', closeThankYouModal);
+
   if (leadForm && leadSubmit && formStatus) {
     leadForm.addEventListener('submit', (e) => {
       e.preventDefault();
 
-      const companyInput = document.getElementById('companyName');
-      const countrySelect = document.getElementById('countryCode');
-      const phoneInput = document.getElementById('phoneNumber');
+      const companyInput = document.getElementById('companyName') as HTMLInputElement | null;
+      const countrySelect = document.getElementById('countryCode') as HTMLSelectElement | null;
+      const phoneInput = document.getElementById('phoneNumber') as HTMLInputElement | null;
 
-      const company = companyInput.value.trim();
-      const countryCode = countrySelect.value;
-      const phone = phoneInput.value.trim();
+      const company = companyInput?.value.trim() ?? '';
+      const countryCode = countrySelect?.value ?? '';
+      const phone = phoneInput?.value.trim() ?? '';
 
       formStatus.classList.remove('success', 'error');
 
@@ -202,9 +233,9 @@ export function initAdsimple(): () => void {
 
       sendLeadToTelegram({ data: { company, countryCode, phone } })
         .then(() => {
-          formStatus.textContent = "Thanks! We've got your details and will contact you within 1 business day.";
-          formStatus.classList.add('success');
+          formStatus.textContent = '';
           leadForm.reset();
+          openThankYouModal();
         })
         .catch(() => {
           formStatus.textContent = "Something went wrong. Please try again or email us directly.";
