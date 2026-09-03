@@ -106,8 +106,16 @@
     transition:transform .1s linear;
   }
 
-  .hero-overlay{
+  .hero-blur{
     position:absolute; inset:0; z-index:1;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    background: rgba(11,12,10,0.12);
+    pointer-events:none;
+  }
+
+  .hero-overlay{
+    position:absolute; inset:0; z-index:2;
     background:
       linear-gradient(180deg, rgba(11,12,10,0.4) 0%, rgba(11,12,10,0.8) 60%, var(--ink) 100%),
       linear-gradient(100deg, rgba(11,12,10,0.8) 0%, rgba(11,12,10,0.45) 42%, rgba(11,12,10,0.15) 68%, transparent 100%),
@@ -139,6 +147,7 @@
 
   @media (max-width:700px){
     .hero-video{ position:absolute; top:0; left:0; width:100%; height:52vh; max-height:440px; object-fit:cover; object-position:50% 22%; }
+    .hero-blur{ backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
     .hero-overlay{
       background:
         linear-gradient(180deg, rgba(11,12,10,0.42) 0%, rgba(11,12,10,0.85) 58%, var(--ink) 100%),
