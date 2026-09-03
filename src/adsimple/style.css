@@ -106,8 +106,16 @@
     transition:transform .1s linear;
   }
 
-  .hero-overlay{
+  .hero-blur{
     position:absolute; inset:0; z-index:1;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    background: rgba(11,12,10,0.12);
+    pointer-events:none;
+  }
+
+  .hero-overlay{
+    position:absolute; inset:0; z-index:2;
     background:
       linear-gradient(180deg, rgba(11,12,10,0.4) 0%, rgba(11,12,10,0.8) 60%, var(--ink) 100%),
       linear-gradient(100deg, rgba(11,12,10,0.8) 0%, rgba(11,12,10,0.45) 42%, rgba(11,12,10,0.15) 68%, transparent 100%),
