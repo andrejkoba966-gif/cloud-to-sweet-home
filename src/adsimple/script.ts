@@ -59,6 +59,23 @@ export function initAdsimple(): () => void {
     });
   }, {threshold:0}).observe(heroSection);
 
+  // ---------- personal video message ----------
+  const founderVideo = document.getElementById('founderVideo') as HTMLVideoElement | null;
+  const founderVideoPlay = document.getElementById('founderVideoPlay') as HTMLButtonElement | null;
+  const heroMessage = document.getElementById('heroMessage');
+  if(founderVideo && founderVideoPlay && heroMessage){
+    founderVideoPlay.addEventListener('click', ()=>{
+      founderVideo.muted = false;
+      founderVideo.controls = true;
+      founderVideo.play().then(()=> heroMessage.classList.add('is-playing')).catch(()=>{});
+    });
+    founderVideo.addEventListener('ended', ()=>{
+      heroMessage.classList.remove('is-playing');
+      founderVideo.controls = false;
+      founderVideo.currentTime = 0;
+    });
+  }
+
   // ---------- scroll: progress bar + hero depth zoom + shape parallax ----------
   const shapes = document.querySelectorAll('.shape[data-speed]');
   function onScroll(){
@@ -248,16 +265,5 @@ export function initAdsimple(): () => void {
     });
   }
 
-  // ---------- metric panel tilt on mouse move ----------
-  const metricPanel = document.getElementById('metricPanel');
-  if(metricPanel && !reduceMotion){
-    heroSection.addEventListener('mousemove', (e)=>{
-      const rect = metricPanel.getBoundingClientRect();
-      const cx = rect.left + rect.width/2, cy = rect.top + rect.height/2;
-      const dx = (e.clientX - cx)/rect.width, dy = (e.clientY - cy)/rect.height;
-      metricPanel.style.transform = `perspective(700px) rotateX(${dy*-8}deg) rotateY(${dx*8}deg)`;
-    });
-    heroSection.addEventListener('mouseleave', ()=>{ metricPanel.style.transform = 'none'; });
-  }
   return () => cleanups.forEach(fn => fn());
 }
