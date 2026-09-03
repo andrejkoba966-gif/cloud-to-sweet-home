@@ -144,6 +144,29 @@
   .dot{ width:7px; height:7px; border-radius:50%; background:var(--volt); display:inline-block; margin-right:8px; box-shadow:0 0 8px var(--volt); animation:pulse 1.6s infinite; }
   @keyframes pulse{ 0%,100%{opacity:1;} 50%{opacity:.35;} }
 
+  .hero-message{
+    align-self:end; background:rgba(23,24,15,0.88); backdrop-filter:blur(8px);
+    border:1px solid var(--line); padding:14px; transition:transform .25s ease, border-color .25s ease;
+  }
+  .hero-message:hover{ border-color:rgba(215,255,63,.42); transform:translateY(-3px); }
+  .hero-message-head{ display:flex; justify-content:space-between; align-items:center; color:var(--steel); font-size:10px; margin:0 2px 12px; }
+  .hero-message-media{ position:relative; aspect-ratio:16/9; overflow:hidden; background:var(--ink); }
+  .hero-message-media video{ width:100%; height:100%; display:block; object-fit:cover; }
+  .hero-message-media::after{ content:""; position:absolute; inset:0; pointer-events:none; background:linear-gradient(180deg, transparent 45%, rgba(11,12,10,.58) 100%); transition:opacity .25s ease; }
+  .hero-message.is-playing .hero-message-media::after{ opacity:0; }
+  .hero-message-play{
+    position:absolute; inset:0; z-index:2; width:100%; height:100%; padding:0;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px;
+    background:transparent; color:var(--bone); clip-path:none;
+  }
+  .play-icon{ width:58px; height:58px; display:grid; place-items:center; padding-left:4px; border:1px solid var(--volt); background:rgba(11,12,10,.68); color:var(--volt); font-size:18px; transition:transform .2s ease, background .2s ease; }
+  .hero-message-play:hover .play-icon{ transform:scale(1.06); background:var(--volt); color:var(--ink); }
+  .play-label{ padding:5px 8px; background:rgba(11,12,10,.72); font-size:10px; }
+  .hero-message.is-playing .hero-message-play{ opacity:0; pointer-events:none; }
+  .hero-message-copy{ display:flex; justify-content:space-between; gap:18px; align-items:flex-end; padding:14px 2px 2px; }
+  .hero-message-copy strong{ max-width:270px; font-size:14px; line-height:1.35; }
+  .hero-message-copy span{ flex-shrink:0; color:var(--steel); font-family:'IBM Plex Mono'; font-size:9px; text-transform:uppercase; }
+
   @media (max-width:700px){
     .hero-video{ position:absolute; top:0; left:0; width:100%; height:52vh; max-height:440px; object-fit:cover; object-position:50% 22%; }
     .hero-blur{ backdrop-filter: blur(12px) saturate(120%); }
@@ -155,6 +178,8 @@
     .hero{ padding-top:90px; }
     .hero h1{ text-shadow:0 2px 16px rgba(0,0,0,0.7); }
     .metric-panel{ display:none; }
+    .hero-message{ width:min(100%, 520px); margin:4px 0 32px; }
+    .hero-message-copy{ align-items:flex-start; flex-direction:column; gap:5px; }
     .hero-ctas{ margin-bottom:20px; }
   }
 
